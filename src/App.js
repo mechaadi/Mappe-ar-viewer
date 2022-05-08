@@ -1,11 +1,19 @@
+import { useEffect, useState } from "react";
 import "./App.css";
 
 function App() {
+  const [modelLink, setModelLink] = useState("")
+  useEffect(() => {
+    try{
+    const gltfLink = window.location.href.split('?model=')[1]
+    setModelLink(gltfLink);
+    }catch(e){}
+  }, [])
   return (
     <div className="App">
       <model-viewer
         alt="Neil Armstrong's Spacesuit from the Smithsonian Digitization Programs Office and National Air and Space Museum"
-        src="/ar/book.gltf"
+        src={modelLink}
         ar
         ar-modes="webxr scene-viewer quick-look"
         seamless-poster
